@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%block title%}
+Market
+{%endblock%}
+
+{%block content%}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Barcode</th>
+      <th scope="col"> Price</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books%}
+    <tr>
+      <td>{{book.id}}</td>
+      <td>{{book.name}}</td>
+      <td>{{book.barcode}}</td>
+      <td>${{book.price}}</td>
+      <td>
+        <button class="btn btn-outline btn-info" href="/delete/{{book.id}}">More info</button>
+        <button class="btn btn-outline btn-success" href="/update/{{book.id}}">Add to Cart</button>
+      </td>
+    </tr>
+    
+{% endfor %}
+  </tbody>
+</table>
+{%endblock%}
