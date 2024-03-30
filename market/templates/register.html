@@ -23,6 +23,10 @@ Register
         
         {{form.password2.label()}}
         {{form.password2(class="form-control", placeholder="Confirm Password")}}
+        <div class="checkbox mb-3">
+            <h4>Already have an account?</h4>
+            <a class="btn btn-danger" href="{{url_for('login_page')}}">Sign In</a>
+        </div>
         <br>
         {{form.submit(class="btn btn-lg w-100 btn-info")}}
 </form>
