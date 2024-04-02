@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block title%}
+Add Item
+{%endblock%}
+
+{%block content%}
+<body class="text-center">
+<div class="container">
+  
+    <form method="POST" class="form bg-black">  
+        {{form.hidden_tag()}}
+        <h1 class="text-info">Add Items</h1>
+        <br>
+        {{form.name.label(class="text-white text-2xl")}}
+        {{form.name(class="form-control", placeholder="name")}}
+
+        {{form.barcode.label()}}
+        {{form.barcode(class="form-control", placeholder="barcode")}}
+
+        {{form.description.label()}}
+        {{form.description(class="form-control", placeholder="description")}}
+        
+        {{form.price.label()}}
+        {{form.price(class="form-control", placeholder="price")}}
+
+        {{form.img_url.label()}}
+        {{form.img_url(class="form-control", placeholder="Image_url")}}
+        
+        <br>
+        {{form.submit(class="btn btn-lg w-100 btn-info")}}
+</form>
+</div>
+
+</body>
+
+
+{%endblock%}

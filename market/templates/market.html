@@ -4,10 +4,15 @@ Market
 {%endblock%}
 
 {%block content%}
-<table class="table table-striped">
+
+<div class="row mx-3 my-4">
+<div class="col-8 ">
+  <h1>Available Items</h1>
+  <h5>Click on the items to start buying</h5>
+  <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">ID</th>
+      <th scope="col">Image</th>
       <th scope="col">Name</th>
       <th scope="col">Barcode</th>
       <th scope="col"> Price</th>
@@ -16,18 +21,43 @@ Market
   </thead>
   <tbody>
     {% for book in books%}
+    {% include "includes/items_modal.html" %}
     <tr>
-      <td>{{book.id}}</td>
+      <td><img width="50px" src={{book.img_url}} alt={{book.name}}/></td>
       <td>{{book.name}}</td>
       <td>{{book.barcode}}</td>
       <td>${{book.price}}</td>
       <td>
-        <button class="btn btn-outline btn-info" href="/delete/{{book.id}}">More info</button>
-        <button class="btn btn-outline btn-success" href="/update/{{book.id}}">Add to Cart</button>
+        <button data-bs-toggle="modal" data-bs-target="#Modal-{{book.id}}" class="btn btn-outline btn-info" href="/delete/{{book.id}}">More info</button>
+
+        <button data-bs-toggle="modal" data-bs-target="#modal-{{book.id}}" class="btn btn-outline btn-success" href="/update/{{book.id}}">Add to Cart</button>
       </td>
     </tr>
     
 {% endfor %}
   </tbody>
 </table>
+</div>
+<div class="col-4 bg-warning">
+
+  <h2 class="text-black">Owned Items</h2>
+  <h5 class="text-dark">Click to return to market</h5>
+  <div class="d-flex">
+    {%for owned_book in owned_books%}
+    {% include "includes/owned_modal.html" %}
+<div class="card py-2" style="width:200px">
+<div class="card-body">
+<img src={{owned_book.img_url}} width="100px"  alt={{owned_book.name}}/>
+    <h5 class="card-title">{{owned_book.name}}</h5>
+
+    <p class="card-text" style="font-weight:bold">Price: ${{owned_book.price}}</p>
+    <button data-bs-toggle="modal" data-bs-target="#Modal-sell-{{owned_book.id}}" class="btn btn-outline-danger">Sell book</button>
+   
+</div>
+</div>
+{%endfor%}
+</div>
+
+</div>
+
 {%endblock%}
